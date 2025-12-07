@@ -66,3 +66,36 @@ button {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Phone Input Styles - react-international-phone */
+.react-international-phone-input-container {
+  width: 100% !important;
+}
+
+.react-international-phone-country-selector-button {
+  border-top-left-radius: 8px !important;
+  border-bottom-left-radius: 8px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-right: none !important;
+}
+
+.react-international-phone-input {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+  flex: 1 !important;
+}
+
+.react-international-phone-input:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 1px #3b82f6 !important;
+  outline: none !important;
+}
+
+.react-international-phone-country-selector-dropdown {
+  border-radius: 8px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+  z-index: 1000 !important;
+}

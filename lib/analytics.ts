@@ -80,3 +80,29 @@ export const trackCustomEvent = async (eventName: string, data?: Record<string, 
   }
 };
 
+// Standard Lead event - use this for form submissions
+// This is a standard Facebook conversion event that can be optimized for in ads
+export const trackLead = async (data?: {
+  content_name?: string;
+  content_category?: string;
+  value?: number;
+  currency?: string;
+}) => {
+  if (typeof window === 'undefined') return;
+  if (pixelInitialized && ReactPixel) {
+    ReactPixel.track('Lead', data);
+  }
+};
+
+// Standard CompleteRegistration event - alternative for form completions
+export const trackCompleteRegistration = async (data?: {
+  content_name?: string;
+  value?: number;
+  currency?: string;
+}) => {
+  if (typeof window === 'undefined') return;
+  if (pixelInitialized && ReactPixel) {
+    ReactPixel.track('CompleteRegistration', data);
+  }
+};
+

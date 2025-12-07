@@ -11,9 +11,9 @@ export default function Footer({ config }: FooterProps) {
   return (
     <footer className="bg-slate-950 border-t border-slate-800 py-12 sm:py-16">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <div className="grid md:grid-cols-3 gap-8 mb-8 text-center md:text-center mx-auto">
           {/* Brand */}
-          <div>
+          <div className="md:text-left">
             <h3 className="text-white font-bold text-lg mb-4">{footer.brandName}</h3>
             <p className="text-gray-500 text-sm">
               {footer.tagline}

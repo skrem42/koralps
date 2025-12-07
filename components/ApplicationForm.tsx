@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { trackCustomEvent } from '@/lib/analytics';
+import { trackLead } from '@/lib/analytics';
 import { AvatarConfig } from '@/lib/config';
 
 interface ApplicationFormProps {
@@ -24,7 +24,12 @@ export default function ApplicationForm({ config }: ApplicationFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    trackCustomEvent('Form_Submitted');
+    
+    // Fire the standard Facebook Lead event for conversion tracking
+    trackLead({
+      content_name: 'Application Form',
+      content_category: 'Lead Generation',
+    });
 
     try {
       if (form.webhookUrl) {

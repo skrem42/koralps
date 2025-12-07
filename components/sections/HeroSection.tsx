@@ -40,34 +40,36 @@ export default function HeroSection({ config, onApplyClick }: HeroSectionProps) 
         </p>
 
         {/* VSL Video Section */}
-        <div className="mb-12 max-w-4xl mx-auto">
-          <div className="relative aspect-video bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 shadow-2xl shadow-blue-500/10">
-            {/* Video Placeholder - Replace with actual video embed */}
-            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900">
-              {/* Play Button */}
-              <button className="group relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/50">
-                <svg 
-                  className="w-8 h-8 sm:w-10 sm:h-10 text-white ml-1" 
-                  fill="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-                {/* Pulse animation ring */}
-                <span className="absolute inset-0 rounded-full bg-blue-500/30 animate-ping"></span>
-              </button>
+        {hero.vslEnabled && (
+          <div className="mb-12 max-w-4xl mx-auto">
+            <div className="relative aspect-video bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 shadow-2xl shadow-blue-500/10">
+              {/* Video Placeholder - Replace with actual video embed */}
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900">
+                {/* Play Button */}
+                <button className="group relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/50">
+                  <svg 
+                    className="w-8 h-8 sm:w-10 sm:h-10 text-white ml-1" 
+                    fill="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  {/* Pulse animation ring */}
+                  <span className="absolute inset-0 rounded-full bg-blue-500/30 animate-ping"></span>
+                </button>
+              </div>
+              {/* Video thumbnail overlay text */}
+              <div className="absolute bottom-4 left-4 right-4 text-left">
+                <p className="text-white/80 text-sm sm:text-base font-medium">
+                  ▶ {hero.videoText}
+                </p>
+              </div>
             </div>
-            {/* Video thumbnail overlay text */}
-            <div className="absolute bottom-4 left-4 right-4 text-left">
-              <p className="text-white/80 text-sm sm:text-base font-medium">
-                ▶ {hero.videoText}
-              </p>
-            </div>
+            <p className="text-gray-400 text-sm mt-3">
+              {hero.videoNote}
+            </p>
           </div>
-          <p className="text-gray-400 text-sm mt-3">
-            {hero.videoNote}
-          </p>
-        </div>
+        )}
 
         {/* CTA Button */}
         <button

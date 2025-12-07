@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import FacebookPixel from "@/components/FacebookPixel";
 import { HeroUIProvider } from "@/components/providers/HeroUIProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Add $50K+ to Your OnlyFans in 90 Days - Guaranteed | OnlyFans Growth Agency",
@@ -25,6 +26,7 @@ export default function RootLayout({
         <HeroUIProvider>
           <FacebookPixel />
           {children}
+          <SpeedInsights />
         </HeroUIProvider>
       </body>
     </html>

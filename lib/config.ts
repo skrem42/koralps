@@ -2,6 +2,7 @@
 // SITE CONFIGURATION
 // ============================================
 
+import earnings from '@/content/earnings.png';
 export const siteConfig = {
   name: 'Kora',
   domain: 'koracreators.net',
@@ -555,6 +556,86 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
       disclaimer: 'This website is NOT endorsed by any platform. Individual experiences may vary.',
     },
   },
+  'positioning': {
+  slug: 'positioning',
+  name: 'Free Positioning Consult',
+  
+  headlineVariants: {
+    a: {
+      headline: 'Free 30-Minute Branding Audit',
+      subheadline: 'We\'ll review your socials, tell you exactly what\'s broken, and show you how to fix it. No pitch. Just answers.',
+    },
+    b: {
+      headline: 'Let Us Tell You Why You\'re Not Growing',
+      subheadline: 'Book a free 30-min call. We\'ll audit your page, find the positioning gaps, and give you the fix.',
+    },
+    c: {
+      headline: 'Stop Guessing. Get a Free Positioning Diagnosis.',
+      subheadline: 'In 30 minutes, we\'ll review your content, identify what\'s costing you money, and tell you exactly what to change.',
+    },
+  },
+  
+  meta: {
+    title: 'Free Positioning Audit | Find Out What\'s Broken | Kora',
+    description: 'Book a free 30-minute call. We\'ll audit your socials, diagnose your positioning, and tell you exactly what to fix.',
+    keywords: 'creator audit, positioning strategy, onlyfans growth, free consultation',
+  },
+  
+  hero: {
+    trustBadge: 'LIMITED SPOTS AVAILABLE',
+    headline: 'Free 30-Minute Positioning Audit',
+    subheadline: 'We\'ll review your socials, tell you exactly what\'s broken, and show you how to fix it. No pitch. Just answers.',
+    resourceImage: '/earnings.png',
+  },
+  
+  form: {
+    headline: 'Book Your Free Audit',
+    fields: [
+      { type: 'firstName', label: 'First Name', placeholder: 'Jane', required: true },
+      { type: 'email', label: 'Email', placeholder: 'jane@example.com', required: true },
+      { type: 'custom', customKey: 'instagram', label: 'Your Instagram Handle', placeholder: '@yourhandle', required: true },
+    ],
+    submitText: 'BOOK MY FREE AUDIT →',
+    webhookUrl: undefined,
+    successRedirect: '/8',
+    successMessage: 'You\'re in. Check your email — we\'ll send you a link to schedule your call.',
+  },
+  
+  whatYouGet: {
+    headline: 'Here\'s What Happens on the Call',
+    intro: 'In 30 minutes, you\'ll know exactly what\'s wrong and how to fix it:',
+    items: [
+      {
+        title: 'Full Social Audit',
+        description: 'We review your IG, Twitter, Reddit (if you have it) — and tell you what\'s working and what\'s killing your growth.',
+      },
+      {
+        title: 'Positioning Diagnosis',
+        description: 'We identify your natural positioning — the angle that fits who you actually are, not some niche you have to fake.',
+      },
+      {
+        title: 'Content Gap Analysis',
+        description: 'We show you exactly which content is converting and which is wasting your time.',
+      },
+      {
+        title: 'The Fix',
+        description: 'You leave with a clear action plan. What to change, what to double down on, and what to stop doing immediately.',
+      },
+    ],
+  },
+  
+  footer: {
+    brandName: 'Kora',
+    disclaimer: 'This is a real strategy call, not a sales pitch. We only take on a handful of creators each month.',
+  },
+  
+  tracking: {
+    customParams: {
+      lead_magnet: 'positioning_audit',
+      avatar_target: '8',
+    },
+  },
+},
 };
 
 // Default config - used as base for all avatars
@@ -1594,6 +1675,215 @@ export const avatars: Record<string, Partial<AvatarConfig>> = {
   footer: {
     brandName: 'Kora',
     tagline: 'Turn Reddit from your biggest headache into your biggest traffic source.',
+    disclaimer: 'Results vary. Growth depends on following our systems and showing up to do the work.',
+  },
+},
+'8': {
+  slug: '8',
+  name: 'Avatar 8 - No Niche / Forced Niche',
+  
+  headlineVariants: {
+    a: {
+      headline: 'Your Agency Made You a "Fitness Girl" and You Haven\'t Been to the Gym in 6 Months.',
+      subheadline: 'No wonder you dread posting. There\'s a better way.',
+    },
+    b: {
+      headline: 'Your Agency Picked Your Niche. You Hate Creating. Your Fans Can Tell.',
+      subheadline: 'The positioning strategy that lets you build a brand around who you actually are.',
+    },
+    c: {
+      headline: 'Cooking Videos When You Can\'t Cook. Gamer Girl When You Don\'t Game. Sound Familiar?',
+      subheadline: 'Your agency shoved you into a niche. Here\'s how to escape.',
+    },
+  },
+  
+  meta: {
+    title: 'You Don\'t Need a Niche. You Need Positioning. | Kora',
+    description: 'Stuck in a niche that isn\'t you? Dreading content? The positioning strategy for creators who don\'t fit a box.',
+    keywords: 'creator niche, onlyfans niche, creator positioning, creator branding',
+  },
+  
+  hero: {
+    badge: '🎭 FOR CREATORS STUCK IN THE WRONG NICHE',
+    headline: 'Your Agency Made You a "Fitness Girl" and You Haven\'t Been to the Gym in 6 Months.',
+    subheadline: 'No wonder you dread posting. There\'s a better way.',
+    guaranteeText: 'If you don\'t hit your growth target, we\'ll manage your account for FREE',
+    guaranteeSubtext: '(and coach you 1-on-1 until you do)',
+    videoText: 'Watch: Why "find your niche" is bad advice',
+    videoNote: '🔊 Sound on',
+    cta: 'SEE IF YOU QUALIFY',
+  },
+  
+  problem: {
+    headline: 'The Niche Trap',
+    intro: [
+      'Your agency couldn\'t figure out how to market you.',
+      'So they did what lazy agencies do:',
+      'They shoved you into a random niche and called it "strategy."',
+    ],
+    painPoints: [
+      'Made you a "fitness girl" when you haven\'t seen a gym in months',
+      'Told you to do cooking content when you burn toast',
+      'Pushed "gamer girl" when you don\'t even own a console',
+      'Forced foot content when you hate feet',
+      'Now you dread every single shoot',
+      'Your fans can tell it\'s forced — engagement is dropping',
+      'You feel like you\'re playing a character instead of being yourself',
+    ],
+    truthHeadline: 'Here\'s What Your Agency Got Wrong:',
+    truthPoints: [
+      'A niche is something you ARE. Fitness, cosplay, gamer — you either have it or you fake it.',
+      'Positioning is something you BUILD. Around who you actually are.',
+      'They gave you a niche because they didn\'t know how to position you. That\'s lazy.',
+    ],
+    businessModelStatement: 'The most successful creators aren\'t "niched." They\'re positioned. There\'s a $10K/month difference.',
+    closingPoints: [
+      'Pretending to love something you don\'t is exhausting.',
+      'Your audience can feel when it\'s forced.',
+      'You don\'t need to become someone you\'re not.',
+      'You need a strategy that makes YOU the brand.',
+    ],
+    cta: 'SHOW ME THE ALTERNATIVE',
+  },
+  
+  solution: {
+    headline: 'At Kora, We Build Positioning — Not Fake Niches',
+    intro: 'Here\'s the difference:',
+    bottlenecks: [
+      { problem: 'Don\'t have a "niche"?', description: 'You don\'t need one. We build positioning around your actual personality, energy, and vibe.' },
+      { problem: 'Stuck in a niche you hate?', description: 'We help you transition out without starting over. Your fans follow YOU, not your "niche."' },
+      { problem: 'Feel generic?', description: 'Positioning isn\'t about being unique. It\'s about being specific. "Girl next door" is a position. So is "your secret."' },
+      { problem: 'Agency doesn\'t get it?', description: 'Most agencies take the lazy route. We do the actual work of figuring out what makes you connect.' },
+    ],
+    closingStatement: 'The girl next door? That\'s a position. The one who feels like your secret? Position. Relatable, real, unfiltered? Position. None of these require a hobby or a costume.',
+    comparisonTable: [
+      { before: 'Pretending to love fitness', after: 'Building a brand around who you actually are' },
+      { before: 'Dreading every shoot', after: 'Content that feels natural' },
+      { before: 'Fans sensing something\'s off', after: 'Authentic connection that converts' },
+      { before: 'Playing a character', after: 'Being yourself (strategically)' },
+      { before: 'Copying what works for others', after: 'Positioning that\'s uniquely yours' },
+    ],
+  },
+  
+  whatYouGet: {
+    headline: 'Everything You Need — Without Faking a Personality',
+    subheadline: 'Build a brand around who you actually are.',
+    services: [
+      {
+        title: 'Positioning Strategy',
+        description: 'We figure out what makes you connect — your energy, your vibe, your story. Not some random niche you have to pretend to love.',
+      },
+      {
+        title: 'Brand Architecture',
+        description: 'How to present yourself across platforms in a way that feels authentic AND converts. No costume required.',
+      },
+      {
+        title: 'Content Strategy',
+        description: 'What to post, how to post it, and why — all based on YOUR positioning. Not recycled "fitness girl" templates.',
+      },
+      {
+        title: 'Niche Transition Plan',
+        description: 'If you\'re stuck in the wrong niche, we help you pivot without losing your audience. Your fans follow you, not your gimmick.',
+      },
+      {
+        title: 'Multi-Platform Traffic',
+        description: 'Reddit, Twitter, IG, TikTok — each optimized for your positioning. Not generic strategies that ignore who you are.',
+      },
+      {
+        title: '1-on-1 Positioning Partner',
+        description: 'Your dedicated partner who actually takes time to understand you. Not a group chat where you\'re just another account.',
+      },
+    ],
+    cta: 'I WANT THIS',
+  },
+  
+  socialProof: {
+    headline: 'Creators Are Escaping the Niche Trap',
+    subheadline: 'What happens when you stop pretending and start positioning.',
+    stats: '$8K-15K',
+    statsSubtext: 'Average growth for "normal" creators with proper positioning',
+    caseStudy: {
+      title: 'Case Study: "Fitness Girl" → Authentic Brand',
+      problem: 'Creator forced into fitness niche by previous agency. Hadn\'t been to gym in 8 months. Dreaded every shoot. Engagement dropping.',
+      whatWeFound: 'Her fans didn\'t follow her for fitness — they followed her because she felt real, relatable, like someone they could actually talk to. The fitness angle was actually hurting her.',
+      whatWeFixed: [
+        'Dropped the fitness pretense entirely',
+        'Repositioned as "the girl who feels like your secret"',
+        'Rebuilt content strategy around authenticity, not props',
+        'Launched Reddit/Twitter with new positioning',
+      ],
+      result: 'Engagement up 40%. Revenue from $4K to $11K in 90 days. "I actually enjoy creating again."',
+    },
+  },
+  
+  whyDifferent: {
+    headline: 'Not Another Agency That\'ll Shove You in a Box',
+    subheadline: 'Here\'s what makes Kora different:',
+    competitors: [
+      {
+        type: 'agency',
+        title: 'Most Agencies',
+        points: [
+          'First question: "What\'s your niche?"',
+          'Can\'t market you? They\'ll assign a niche anyway',
+          'Cookie-cutter strategies that ignore who you are',
+          'You end up pretending to be someone you\'re not',
+          'Dreading content becomes normal',
+        ],
+        isPositive: false,
+      },
+      {
+        type: 'kora',
+        title: 'Kora',
+        points: [
+          'First question: "What makes fans connect to you?"',
+          'We do the work to figure out your positioning',
+          'Strategy built around your actual personality',
+          'Content you don\'t dread creating',
+          'Authentic brand that actually converts',
+        ],
+        isPositive: true,
+      },
+    ],
+    coreDifference: 'We don\'t ask "what\'s your niche?" We ask "what makes you, you?" Then we build from there.',
+  },
+  
+  guarantee: {
+    badge: '💎 OUR GUARANTEE 💎',
+    headline: 'Add $10K/Month to Your OnlyFans — Guaranteed.',
+    subheadline: 'If you don\'t, we\'ll manage your account for FREE until you hit it.',
+    intro: 'We don\'t work with everyone who applies. We need creators who are ready to be themselves — not play a character.',
+    qualificationIntro: 'We need to know you\'re:',
+    qualifications: [
+      { title: 'Done Pretending', description: 'Ready to build a brand around who you actually are, not who an agency told you to be.' },
+      { title: 'Coachable', description: 'Willing to try new positioning even if it feels vulnerable at first.' },
+      { title: 'Committed', description: 'We handle strategy and execution, but you still need to create content.' },
+    ],
+    closing: 'If that\'s you, we guarantee results. No more pretending. No more dreading content.',
+    cta: 'APPLY NOW — SEE IF YOU QUALIFY',
+  },
+  
+  form: {
+    headline: 'Ready to Build a Real Brand?',
+    subheadline: 'No credit card. No judgment. Just a conversation about who you actually are.',
+    webhookUrl: undefined,
+    successMessage: 'Thanks! We\'ll review your application and reach out within 24 hours.',
+    fields: {
+      challengeEnabled: true,
+      challengeLabel: 'What\'s your situation right now?',
+      challengePlaceholder: 'Stuck in wrong niche, don\'t have a niche, dreading content, something else?',
+    },
+    trustBadges: [
+      '🔒 100% Confidential — We never share your info',
+      '⚡ Response within 24 hours',
+      '💬 No sales pressure — Just a real conversation',
+    ],
+    submitText: 'SUBMIT APPLICATION →',
+  },
+  
+  footer: {
+    brandName: 'Kora',
+    tagline: 'You don\'t need a niche. You need positioning.',
     disclaimer: 'Results vary. Growth depends on following our systems and showing up to do the work.',
   },
 },

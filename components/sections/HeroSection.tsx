@@ -74,14 +74,14 @@ export default function HeroSection({ config, onApplyClick }: HeroSectionProps) 
         {/* CTA Button */}
         <button
           onClick={onApplyClick}
-          className="group relative inline-flex items-center justify-center px-10 sm:px-12 py-5 sm:py-6 text-lg sm:text-xl font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40"
+          className="group relative inline-flex items-center justify-center px-10 sm:px-12 mt-5 py-5 sm:py-6 text-lg sm:text-xl font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40"
         >
           <span className="relative z-10">{hero.cta}</span>
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </button>
 
         {/* Scroll indicator */}
-        <div className="mt-16 flex flex-col items-center opacity-60">
+        <div className="mt-5 flex flex-col items-center opacity-60">
           <span className="text-gray-400 text-sm mb-2">Scroll to learn more</span>
           <svg className="w-6 h-6 text-gray-400 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />

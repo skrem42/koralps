@@ -196,7 +196,7 @@ export default function LeadMagnetPage({ config }: LeadMagnetPageProps) {
           {/* Main Headline */}
           <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold text-center text-white mb-4 leading-tight ${isAmber ? 'uppercase tracking-tight' : ''}`}
               style={isAmber ? { fontFamily: 'Impact, Haettenschweiler, Arial Narrow Bold, sans-serif', letterSpacing: '0.02em' } : undefined}>
-            <span className={scheme.accentText}>Free Download:</span>{' '}
+            <span className={scheme.accentText}></span>{' '}
             {hero.headline.replace(/^Free Download:\s*/i, '')}
           </h1>
 
@@ -206,14 +206,14 @@ export default function LeadMagnetPage({ config }: LeadMagnetPageProps) {
           </p>
 
           {/* Two Column Layout: Resource Image + Form */}
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: Resource Image */}
             <div className="flex justify-center md:justify-end">
               {hero.resourceImage ? (
                 <img 
                   src={hero.resourceImage} 
                   alt="Resource Preview" 
-                  className={`max-w-xs sm:max-w-sm w-full h-auto rounded-2xl shadow-2xl ${scheme.resourceShadow}`}
+                  className={`max-w-sm sm:max-w-md lg:max-w-lg w-full h-auto rounded-2xl shadow-2xl ${scheme.resourceShadow}`}
                 />
               ) : (
                 <div className={`max-w-xs sm:max-w-sm w-full aspect-[3/4] bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl ${scheme.resourceShadow} border border-slate-700/50 flex items-center justify-center`}>

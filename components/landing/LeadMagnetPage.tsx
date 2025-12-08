@@ -106,6 +106,18 @@ export default function LeadMagnetPage({ config }: LeadMagnetPageProps) {
     });
 
     try {
+      // Save to Vercel Postgres
+      await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          source: window.location.href,
+          leadMagnet: config.slug,
+        }),
+      });
+
+      // Also send to webhook if configured
       if (form.webhookUrl) {
         await fetch(form.webhookUrl, {
           method: 'POST',

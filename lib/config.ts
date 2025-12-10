@@ -39,6 +39,7 @@ export interface CaseStudy {
   whatWeFound: string;
   whatWeFixed: string[];
   result: string;
+  image?: string;  // Optional image path to display below the case study
 }
 
 // Testimonial
@@ -128,8 +129,11 @@ export interface AvatarConfig {
   socialProof: {
     headline: string;
     subheadline: string;
-    stats: string;
-    statsSubtext: string;
+    // Stats banner - fully configurable
+    statsPrimary?: string;    // Full primary line (e.g., "Most Creators add $8K-15K/month" or custom)
+    statsSecondary?: string;  // Secondary line (e.g., "in their first 90 days in our program")
+    stats: string;            // Legacy: just the number (used if statsPrimary not set)
+    statsSubtext: string;     // Additional context below
     testimonials?: Testimonial[];
     caseStudy?: CaseStudy;
   };
@@ -520,7 +524,7 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
     },
     
     hero: {
-      trustBadge: 'TRUSTED BY 500+ CREATORS',
+      trustBadge: 'TRUSTED BY TOP 0.01% CREATORS',
       headline: 'The Creator Growth Playbook',
       subheadline: '7 proven strategies that help creators scale to $10K+ months without burning out.',
     },
@@ -597,7 +601,7 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
     ],
     submitText: 'BOOK MY FREE AUDIT →',
     webhookUrl: undefined,
-    successRedirect: '/8',
+    successRedirect: '',
     successMessage: 'You\'re in. Check your email — we\'ll send you a link to schedule your call.',
   },
   
@@ -735,7 +739,9 @@ export const defaultAvatarConfig: AvatarConfig = {
   socialProof: {
     headline: 'Creators Are Scaling Right Now. In 2025.',
     subheadline: 'Most creators add $8K-15K/month in their first 90 days.',
-    stats: '$8K-15K',
+    statsPrimary: 'Most Creators add $8K-15K/month',
+    statsSecondary: 'in their first 90 days in our program',
+    stats: '$8K-15K',  // Legacy fallback
     statsSubtext: 'But the real results come as we remove constraint after constraint...',
     caseStudy: {
       title: 'Case Study: The $3K → $11K Turnaround',
@@ -1708,7 +1714,7 @@ export const avatars: Record<string, Partial<AvatarConfig>> = {
     headline: 'Your Agency Made You a "Fitness Girl" and You Haven\'t Been to the Gym in 6 Months.',
     subheadline: 'No wonder you dread posting. There\'s a better way.',
     guaranteeText: 'If you don\'t hit your growth target, we\'ll manage your account for FREE',
-    guaranteeSubtext: '(and coach you 1-on-1 until you do)',
+    guaranteeSubtext: '',
     videoText: 'Watch: Why "find your niche" is bad advice',
     videoNote: '🔊 Sound on',
     cta: 'SEE IF YOU QUALIFY',
@@ -1800,22 +1806,24 @@ export const avatars: Record<string, Partial<AvatarConfig>> = {
   socialProof: {
     headline: 'Creators Are Escaping the Niche Trap',
     subheadline: 'What happens when you stop pretending and start positioning.',
+    statsPrimary: 'How we scaled a creator from $0 to $450k/month in 4 months',
+    statsSecondary: 'Simply by positioning her correctly',
     stats: '$8K-15K',
-    statsSubtext: 'Average growth for "normal" creators with proper positioning',
+    statsSubtext: '',
     caseStudy: {
-      title: 'Case Study: "Fitness Girl" → Authentic Brand',
-      problem: 'Creator forced into fitness niche by previous agency. Hadn\'t been to gym in 8 months. Dreaded every shoot. Engagement dropping.',
-      whatWeFound: 'Her fans didn\'t follow her for fitness — they followed her because she felt real, relatable, like someone they could actually talk to. The fitness angle was actually hurting her.',
+      title: 'Case Study: $0 → $450K/Month in 4 Months',
+      problem: 'Creator spending hours every day scrolling other creators\' pages, trying to find trends to copy. Waking up stressed, no idea what to post. Every piece of content felt like a knockoff of someone else\'s.',
+      whatWeFound: 'She had no positioning. No brand identity. Just a feed full of recycled ideas that looked like everyone else\'s. She was chasing trends instead of creating them — and her audience could feel it.',
       whatWeFixed: [
-        'Dropped the fitness pretense entirely',
-        'Repositioned as "the girl who feels like your secret"',
-        'Rebuilt content strategy around authenticity, not props',
-        'Launched Reddit/Twitter with new positioning',
+        'Built positioning around who she actually is',
+        'Created a brand identity that made content ideas obvious',
+        'Stopped the trend-chasing cycle entirely',
+        'Unique content now flows naturally as an extension of her brand',
       ],
-      result: 'Engagement up 40%. Revenue from $4K to $11K in 90 days. "I actually enjoy creating again."',
+      result: '$0 to $450K/month in 4 months. No more scrolling for ideas. No more copying. She wakes up knowing exactly what to create — because it\'s just her.',
+      image: 'earnings.png'
     },
   },
-  
   whyDifferent: {
     headline: 'Not Another Agency That\'ll Shove You in a Box',
     subheadline: 'Here\'s what makes Kora different:',

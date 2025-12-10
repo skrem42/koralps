@@ -10,11 +10,17 @@ export async function GET() {
         id SERIAL PRIMARY KEY,
         first_name VARCHAR(255),
         last_name VARCHAR(255),
+        name VARCHAR(255),
         email VARCHAR(255) NOT NULL,
         phone VARCHAR(50),
         instagram VARCHAR(255),
+        social_handle VARCHAR(255),
+        revenue VARCHAR(50),
+        challenge TEXT,
         lead_magnet VARCHAR(255),
+        avatar VARCHAR(255),
         source TEXT,
+        lead_type VARCHAR(50),
         created_at TIMESTAMP DEFAULT NOW()
       )
     `;
@@ -22,7 +28,13 @@ export async function GET() {
     // Add columns if they don't exist (for existing tables)
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS first_name VARCHAR(255)`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS last_name VARCHAR(255)`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS name VARCHAR(255)`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS instagram VARCHAR(255)`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS social_handle VARCHAR(255)`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS revenue VARCHAR(50)`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS challenge TEXT`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS avatar VARCHAR(255)`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS lead_type VARCHAR(50)`;
 
     return NextResponse.json({ message: 'Table created/updated successfully' });
   } catch (error) {

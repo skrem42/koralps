@@ -28,14 +28,18 @@ export default function SocialProof({ config }: SocialProofProps) {
         {/* Stats Banner */}
         <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-2xl p-8 border border-green-500/30 mb-12 text-center">
           <p className="text-3xl sm:text-4xl font-bold text-white mb-2">
-            Most Creators add <span className="text-green-400">{socialProof.stats}</span>/month
+            {socialProof.statsPrimary || (
+              <>Most Creators add <span className="text-green-400">{socialProof.stats}</span>/month</>
+            )}
           </p>
           <p className="text-xl text-gray-300">
-            in their first 90 days in our program
+            {socialProof.statsSecondary || 'in their first 90 days in our program'}
           </p>
-          <p className="text-gray-400 mt-2">
-            {socialProof.statsSubtext}
-          </p>
+          {socialProof.statsSubtext && (
+            <p className="text-gray-400 mt-2">
+              {socialProof.statsSubtext}
+            </p>
+          )}
         </div>
 
         {/* Case Study */}
@@ -89,6 +93,17 @@ export default function SocialProof({ config }: SocialProofProps) {
               </div>
               <p className="text-xl text-white font-semibold">{socialProof.caseStudy.result}</p>
             </div>
+
+            {/* Case Study Image */}
+            {socialProof.caseStudy.image && (
+              <div className="mt-8">
+                <img 
+                  src={socialProof.caseStudy.image} 
+                  alt="Case study results" 
+                  className="w-full rounded-xl shadow-2xl shadow-black/20 border border-slate-700/50"
+                />
+              </div>
+            )}
           </div>
         )}
 

@@ -32,6 +32,19 @@ export default function ApplicationForm({ config }: ApplicationFormProps) {
     });
 
     try {
+      // Save to Neon database
+      await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          avatar: config.slug,
+          source: window.location.href,
+          leadType: 'application',
+        }),
+      });
+
+      // Also send to webhook if configured
       if (form.webhookUrl) {
         await fetch(form.webhookUrl, {
           method: 'POST',
@@ -40,6 +53,7 @@ export default function ApplicationForm({ config }: ApplicationFormProps) {
             ...formData,
             submittedAt: new Date().toISOString(),
             source: window.location.href,
+            avatar: config.slug,
           }),
         });
       }

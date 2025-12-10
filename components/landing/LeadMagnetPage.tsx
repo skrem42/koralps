@@ -126,7 +126,7 @@ export default function LeadMagnetPage({ config }: LeadMagnetPageProps) {
     });
 
     try {
-      // Save to Vercel Postgres
+      // Save to Neon database
       await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -134,6 +134,7 @@ export default function LeadMagnetPage({ config }: LeadMagnetPageProps) {
           ...formData,
           source: window.location.href,
           leadMagnet: config.slug,
+          leadType: 'lead_magnet',
         }),
       });
 

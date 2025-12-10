@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { trackLead } from '@/lib/analytics';
 import { LeadMagnetConfig } from '@/lib/config';
 import PhoneInput from '@/components/ui/PhoneInput';
@@ -80,10 +80,30 @@ export default function LeadMagnetPage({ config }: LeadMagnetPageProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState<Record<string, string>>({});
+  const [redirectCountdown, setRedirectCountdown] = useState<number | null>(null);
 
   // Get color scheme (default to blue)
   const scheme = colorSchemes[config.colorScheme || 'blue'];
   const isAmber = config.colorScheme === 'amber';
+
+  // Handle redirect countdown after submission
+  useEffect(() => {
+    if (isSubmitted && form.successRedirect && redirectCountdown === null) {
+      // Start 3-second countdown
+      setRedirectCountdown(3);
+    }
+  }, [isSubmitted, form.successRedirect, redirectCountdown]);
+
+  useEffect(() => {
+    if (redirectCountdown !== null && redirectCountdown > 0) {
+      const timer = setTimeout(() => {
+        setRedirectCountdown(redirectCountdown - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (redirectCountdown === 0 && form.successRedirect) {
+      window.location.href = form.successRedirect;
+    }
+  }, [redirectCountdown, form.successRedirect]);
 
   const handleFieldChange = (key: string, value: string) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
@@ -131,11 +151,8 @@ export default function LeadMagnetPage({ config }: LeadMagnetPageProps) {
         });
       }
 
-      if (form.successRedirect) {
-        window.location.href = form.successRedirect;
-      } else {
-        setIsSubmitted(true);
-      }
+      // Always show thank you page first (redirect handled by useEffect if configured)
+      setIsSubmitted(true);
     } catch (error) {
       console.error('Submission error:', error);
     } finally {
@@ -157,8 +174,13 @@ export default function LeadMagnetPage({ config }: LeadMagnetPageProps) {
             {form.successMessage || 'Check your email for instant access!'}
           </p>
           {formData.email && (
-            <p className="text-gray-400">
+            <p className="text-gray-400 mb-4">
               Check your inbox at <span className="text-white">{formData.email}</span>
+            </p>
+          )}
+          {form.successRedirect && redirectCountdown !== null && (
+            <p className="text-gray-500 text-sm">
+              Redirecting in {redirectCountdown}...
             </p>
           )}
         </div>

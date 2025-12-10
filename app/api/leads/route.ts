@@ -4,12 +4,12 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, phone, leadMagnet, source } = body;
+    const { firstName, lastName, email, phone, instagram, leadMagnet, source } = body;
 
     // Insert lead into database
     await sql`
-      INSERT INTO leads (name, email, phone, lead_magnet, source, created_at)
-      VALUES (${name || null}, ${email}, ${phone || null}, ${leadMagnet || null}, ${source || null}, NOW())
+      INSERT INTO leads (first_name, last_name, email, phone, instagram, lead_magnet, source, created_at)
+      VALUES (${firstName || null}, ${lastName || null}, ${email}, ${phone || null}, ${instagram || null}, ${leadMagnet || null}, ${source || null}, NOW())
     `;
 
     return NextResponse.json({ success: true }, { status: 201 });

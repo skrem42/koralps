@@ -20,7 +20,7 @@ const loadPixel = async () => {
 export const initFacebookPixel = async () => {
   if (typeof window === 'undefined') return;
   
-  const pixelId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || '1241561791159730';
+  const pixelId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || '2055900041887614';
   
   if (!pixelId) {
     console.warn('Facebook Pixel ID not found in environment variables');

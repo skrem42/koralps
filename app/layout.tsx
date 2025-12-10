@@ -3,6 +3,7 @@ import "./globals.css";
 import FacebookPixel from "@/components/FacebookPixel";
 import { HeroUIProvider } from "@/components/providers/HeroUIProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Add $50K+ to Your OnlyFans in 90 Days - Guaranteed | OnlyFans Growth Agency",
@@ -27,6 +28,7 @@ export default function RootLayout({
           <FacebookPixel />
           {children}
           <SpeedInsights />
+          <Analytics />
         </HeroUIProvider>
       </body>
     </html>

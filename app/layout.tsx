@@ -6,13 +6,19 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
-  title: "Add $50K+ to Your OnlyFans in 90 Days - Guaranteed | OnlyFans Growth Agency",
-  description: "Join 500+ creators who've scaled their OnlyFans with our proven system. Full-service management: content strategy, chatting, paid ads & coaching. Apply for a free strategy call.",
-  keywords: "onlyfans management, onlyfans agency, onlyfans growth, scale onlyfans, onlyfans marketing, creator management, content monetization",
+  title: "Kora | South Africa's Leading Creator Management Agency",
+  description: "The agency behind SA's top creators. In-person content direction, brilliant organic strategy, and the fastest deployment in the game. We scaled Lauren from $1K to $500K/month.",
+  keywords: "creator management, onlyfans agency, south africa creator agency, content management, influencer agency, kora",
   openGraph: {
-    title: "Add $50K+ to Your OnlyFans in 90 Days - Guaranteed",
-    description: "We help OnlyFans creators scale from $3K to $50K+/month with our complete growth system. See if you qualify for our program.",
+    title: "Kora | South Africa's Leading Creator Management Agency",
+    description: "We don't just manage accounts. We build influencers. In-person content direction, brilliant strategy, and results like $1K to $500K/month.",
     type: "website",
+    siteName: "Kora",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kora | SA's #1 Creator Agency",
+    description: "In-person content direction. Brilliant strategy. Results like $1K to $500K/month.",
   },
 };
 
@@ -22,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="antialiased">
+    <html lang="en" className="scroll-smooth dark">
+      <body className="antialiased bg-black text-white">
         <HeroUIProvider>
           <FacebookPixel />
           {children}

@@ -2,11 +2,15 @@
 // SITE CONFIGURATION
 // ============================================
 
-import earnings from '@/content/earnings.png';
 export const siteConfig = {
   name: 'Kora',
+  tagline: "South Africa's Leading Creator Management Agency",
   domain: 'koracreators.net',
   defaultLocale: 'en',
+  social: {
+    instagram: '',
+    twitter: '',
+  },
 };
 
 // ============================================

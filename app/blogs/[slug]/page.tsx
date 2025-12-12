@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${post.title} | Kora Creators Blog`,
+    title: `${post.title} | Kora Blog`,
     description: post.description,
     keywords: post.tags.join(', '),
     openGraph: {
@@ -47,14 +47,14 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   return (
-    <main className="min-h-screen bg-slate-950">
+    <main className="min-h-screen bg-black">
       {/* Header */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-slate-900 to-slate-950">
+      <section className="py-16 sm:py-24 bg-gray-950">
         <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
           {/* Back link */}
           <Link
             href="/blogs"
-            className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-8 transition-colors"
+            className="inline-flex items-center text-amber-400 hover:text-amber-300 mb-8 transition-colors"
           >
             <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -64,20 +64,20 @@ export default async function BlogPostPage({ params }: Props) {
 
           {/* Meta */}
           <div className="flex items-center gap-4 mb-6">
-            <span className="text-sm font-semibold text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full">
+            <span className="text-sm font-semibold text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full">
               {post.category}
             </span>
             <span className="text-sm text-gray-500">{post.readTime}</span>
           </div>
 
           {/* Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6">
             {post.title}
           </h1>
 
           {/* Author & Date */}
           <div className="flex items-center gap-4 text-gray-400">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold">
+            <div className="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-black font-bold">
               {post.author.charAt(0)}
             </div>
             <div>
@@ -95,10 +95,9 @@ export default async function BlogPostPage({ params }: Props) {
       </section>
 
       {/* Content */}
-      <section className="py-12 sm:py-16">
+      <section className="py-12 sm:py-16 bg-black">
         <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
-          <article className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-p:text-gray-300 prose-a:text-blue-400 prose-strong:text-white prose-ul:text-gray-300 prose-ol:text-gray-300 prose-blockquote:border-blue-500 prose-blockquote:text-gray-400 prose-code:text-purple-400 prose-hr:border-slate-700">
-            {/* Simple markdown rendering - for production, use MDX or remark */}
+          <article className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-headings:font-bold prose-p:text-gray-300 prose-a:text-amber-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-ul:text-gray-300 prose-ol:text-gray-300 prose-li:marker:text-amber-400 prose-blockquote:border-amber-500 prose-blockquote:text-gray-400 prose-code:text-amber-400 prose-hr:border-gray-800">
             <div
               dangerouslySetInnerHTML={{
                 __html: simpleMarkdownToHtml(post.content),
@@ -107,12 +106,12 @@ export default async function BlogPostPage({ params }: Props) {
           </article>
 
           {/* Tags */}
-          <div className="mt-12 pt-8 border-t border-slate-800">
+          <div className="mt-12 pt-8 border-t border-gray-800">
             <div className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-sm text-gray-400 bg-slate-800 px-3 py-1 rounded-full"
+                  className="text-sm text-gray-400 bg-gray-900 px-3 py-1 rounded-full border border-gray-800"
                 >
                   #{tag}
                 </span>
@@ -123,19 +122,19 @@ export default async function BlogPostPage({ params }: Props) {
       </section>
 
       {/* CTA */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-slate-950 to-slate-900">
+      <section className="py-16 sm:py-24 bg-gray-950">
         <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl font-black text-white mb-6">
             Want Results Like This?
           </h2>
           <p className="text-xl text-gray-400 mb-8">
             Apply for a free strategy call and see how we can help you scale.
           </p>
           <Link
-            href="/#apply"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300"
+            href="/apply"
+            className="inline-block bg-amber-500 hover:bg-amber-400 text-black font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
           >
-            Book Your Free Call →
+            Apply Now
           </Link>
         </div>
       </section>
@@ -144,7 +143,6 @@ export default async function BlogPostPage({ params }: Props) {
 }
 
 // Simple markdown to HTML converter (for basic rendering)
-// For production, consider using remark/rehype or MDX
 function simpleMarkdownToHtml(markdown: string): string {
   return markdown
     // Headers
@@ -175,4 +173,3 @@ function simpleMarkdownToHtml(markdown: string): string {
       return `<p>${match}</p>`;
     });
 }
-

@@ -10,9 +10,10 @@ interface PhoneInputProps {
   required?: boolean;
   placeholder?: string;
   id?: string;
+  variant?: 'light' | 'dark';
 }
 
-export default function PhoneInput({ value, onChange, required, placeholder, id }: PhoneInputProps) {
+export default function PhoneInput({ value, onChange, required, placeholder, id, variant = 'dark' }: PhoneInputProps) {
   const [detectedCountry, setDetectedCountry] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -40,9 +41,13 @@ export default function PhoneInput({ value, onChange, required, placeholder, id 
     detectCountry();
   }, []);
 
+  const isDark = variant === 'dark';
+
   if (isLoading) {
     return (
-      <div className="w-full h-[50px] bg-slate-50 border border-slate-300 rounded-lg animate-pulse" />
+      <div className={`w-full h-[50px] border rounded-lg animate-pulse ${
+        isDark ? 'bg-gray-800 border-gray-700' : 'bg-slate-50 border-slate-300'
+      }`} />
     );
   }
 
@@ -60,15 +65,15 @@ export default function PhoneInput({ value, onChange, required, placeholder, id 
         style={{
           // Container styles
           '--react-international-phone-height': '50px',
-          '--react-international-phone-background-color': '#ffffff',
-          '--react-international-phone-text-color': '#0f172a',
+          '--react-international-phone-background-color': isDark ? '#1f2937' : '#ffffff',
+          '--react-international-phone-text-color': isDark ? '#ffffff' : '#0f172a',
           '--react-international-phone-font-size': '16px',
           '--react-international-phone-border-radius': '8px',
-          '--react-international-phone-border-color': '#cbd5e1',
-          '--react-international-phone-disabled-background-color': '#f8fafc',
-          '--react-international-phone-selected-dropdown-item-background-color': '#dbeafe',
-          '--react-international-phone-country-selector-background-color-hover': '#f1f5f9',
-          '--react-international-phone-dropdown-item-background-color-hover': '#f8fafc',
+          '--react-international-phone-border-color': isDark ? '#374151' : '#cbd5e1',
+          '--react-international-phone-disabled-background-color': isDark ? '#111827' : '#f8fafc',
+          '--react-international-phone-selected-dropdown-item-background-color': isDark ? '#374151' : '#dbeafe',
+          '--react-international-phone-country-selector-background-color-hover': isDark ? '#374151' : '#f1f5f9',
+          '--react-international-phone-dropdown-item-background-color-hover': isDark ? '#374151' : '#f8fafc',
           width: '100%',
         } as React.CSSProperties}
       />

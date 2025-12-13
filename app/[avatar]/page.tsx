@@ -8,6 +8,7 @@ import {
   parseLeadMagnetSlug,
   getLeadMagnetConfig,
 } from '@/lib/config';
+import { getIndexingPolicy, getRobotsContent } from '@/lib/seo';
 import LandingPageV2 from '@/components/landing/LandingPageV2';
 import LeadMagnetPage from '@/components/landing/LeadMagnetPage';
 
@@ -24,6 +25,7 @@ export async function generateStaticParams() {
 // Generate metadata for each page (avatar or lead magnet)
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { avatar } = await params;
+  const policy = getIndexingPolicy(`/${avatar}`);
   
   // Check if this is a lead magnet page
   if (isLeadMagnetSlug(avatar)) {
@@ -41,6 +43,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: config.meta.title,
       description: config.meta.description,
       keywords: config.meta.keywords,
+      robots: getRobotsContent(policy),
+      alternates: policy.canonical ? { canonical: policy.canonical } : undefined,
       openGraph: {
         title: config.meta.title,
         description: config.meta.description,
@@ -63,6 +67,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: config.meta.title,
     description: config.meta.description,
     keywords: config.meta.keywords,
+    robots: getRobotsContent(policy),
+    alternates: policy.canonical ? { canonical: policy.canonical } : undefined,
     openGraph: {
       title: config.meta.title,
       description: config.meta.description,

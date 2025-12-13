@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getPostBySlug, getAllPostSlugs } from '@/lib/blog';
+import MarkdownContent from '@/components/blog/MarkdownContent';
+import { ArticleSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -48,6 +50,21 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-black">
+      <ArticleSchema
+        title={post.title}
+        description={post.description}
+        author={post.author}
+        datePublished={post.date}
+        url={`https://koracreators.net/blogs/${slug}`}
+        image={post.image}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', url: 'https://koracreators.net' },
+          { name: 'Blog', url: 'https://koracreators.net/blogs' },
+          { name: post.title, url: `https://koracreators.net/blogs/${slug}` },
+        ]}
+      />
       {/* Header */}
       <section className="py-16 sm:py-24 bg-gray-950">
         <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -98,11 +115,7 @@ export default async function BlogPostPage({ params }: Props) {
       <section className="py-12 sm:py-16 bg-black">
         <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
           <article className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-headings:font-bold prose-p:text-gray-300 prose-a:text-amber-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-ul:text-gray-300 prose-ol:text-gray-300 prose-li:marker:text-amber-400 prose-blockquote:border-amber-500 prose-blockquote:text-gray-400 prose-code:text-amber-400 prose-hr:border-gray-800">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: simpleMarkdownToHtml(post.content),
-              }}
-            />
+            <MarkdownContent content={post.content} />
           </article>
 
           {/* Tags */}
@@ -140,36 +153,4 @@ export default async function BlogPostPage({ params }: Props) {
       </section>
     </main>
   );
-}
-
-// Simple markdown to HTML converter (for basic rendering)
-function simpleMarkdownToHtml(markdown: string): string {
-  return markdown
-    // Headers
-    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-    // Bold
-    .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
-    // Italic
-    .replace(/\*(.*?)\*/gim, '<em>$1</em>')
-    // Links
-    .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2">$1</a>')
-    // Unordered lists
-    .replace(/^\- (.*$)/gim, '<li>$1</li>')
-    // Ordered lists
-    .replace(/^\d+\. (.*$)/gim, '<li>$1</li>')
-    // Blockquotes
-    .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>')
-    // Code inline
-    .replace(/`(.*?)`/gim, '<code>$1</code>')
-    // Horizontal rule
-    .replace(/^---$/gim, '<hr>')
-    // Paragraphs (double newlines)
-    .replace(/\n\n/gim, '</p><p>')
-    // Wrap in paragraph
-    .replace(/^(.+)$/gim, (match) => {
-      if (match.startsWith('<')) return match;
-      return `<p>${match}</p>`;
-    });
 }

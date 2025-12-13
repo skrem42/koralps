@@ -8,10 +8,13 @@ import {
   AgencyNavbar,
   AgencyFooter,
 } from '@/components/agency';
+import { OrganizationSchema, WebSiteSchema } from '@/components/seo/JsonLd';
 
 export default function Home() {
   return (
     <main className="bg-black min-h-screen">
+      <OrganizationSchema />
+      <WebSiteSchema />
       <AgencyNavbar />
       
       <AgencyHero

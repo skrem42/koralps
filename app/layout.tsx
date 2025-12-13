@@ -6,19 +6,40 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://koracreators.net"),
   title: "Kora | South Africa's Leading Creator Management Agency",
-  description: "The agency behind SA's top creators. In-person content direction, brilliant organic strategy, and the fastest deployment in the game. We scaled Lauren from $1K to $500K/month.",
-  keywords: "creator management, onlyfans agency, south africa creator agency, content management, influencer agency, kora",
+  description:
+    "The agency behind SA's top creators. In-person content direction, brilliant organic strategy, and the fastest deployment in the game. We scaled Lauren from $1K to $500K/month.",
+  keywords:
+    "creator management, onlyfans agency, south africa creator agency, content management, influencer agency, kora",
   openGraph: {
     title: "Kora | South Africa's Leading Creator Management Agency",
-    description: "We don't just manage accounts. We build influencers. In-person content direction, brilliant strategy, and results like $1K to $500K/month.",
+    description:
+      "We don't just manage accounts. We build influencers. In-person content direction, brilliant strategy, and results like $1K to $500K/month.",
     type: "website",
     siteName: "Kora",
+    locale: "en_US",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Kora Creator Agency",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Kora | SA's #1 Creator Agency",
-    description: "In-person content direction. Brilliant strategy. Results like $1K to $500K/month.",
+    description:
+      "In-person content direction. Brilliant strategy. Results like $1K to $500K/month.",
+    images: ["/og-image.png"],
+  },
+  alternates: {
+    languages: {
+      "en-ZA": "https://koracreators.net/za",
+      "x-default": "https://koracreators.net",
+    },
   },
 };
 

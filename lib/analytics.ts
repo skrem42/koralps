@@ -1,108 +1,117 @@
-'use client';
+// ============================================
+// FACEBOOK PIXEL ANALYTICS UTILITIES
+// ============================================
+// Uses the native fbq SDK loaded via Script component
 
-let pixelInitialized = false;
-let ReactPixel: any = null;
-
-const loadPixel = async () => {
-  if (typeof window === 'undefined') return null;
-  if (ReactPixel) return ReactPixel;
-  
-  try {
-    const module = await import('react-facebook-pixel');
-    ReactPixel = module.default;
-    return ReactPixel;
-  } catch (error) {
-    console.error('Failed to load Facebook Pixel:', error);
-    return null;
+// Declare fbq on window for TypeScript
+declare global {
+  interface Window {
+    fbq: (...args: unknown[]) => void;
   }
-};
+}
 
-export const initFacebookPixel = async () => {
-  if (typeof window === 'undefined') return;
-  
-  const pixelId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || '2055900041887614';
-  
-  if (!pixelId) {
-    console.warn('Facebook Pixel ID not found in environment variables');
-    return;
-  }
+/**
+ * Check if fbq is available
+ */
+function isFbqAvailable(): boolean {
+  return typeof window !== 'undefined' && typeof window.fbq === 'function';
+}
 
-  if (!pixelInitialized) {
-    const pixel = await loadPixel();
-    if (pixel) {
-      pixel.init(pixelId, undefined, {
-        autoConfig: true,
-        debug: false,
-      });
-      pixelInitialized = true;
-    }
-  }
-};
+/**
+ * Track page view
+ */
+export function trackPageView(): void {
+  if (!isFbqAvailable()) return;
+  window.fbq('track', 'PageView');
+}
 
-export const trackPageView = async () => {
-  if (typeof window === 'undefined') return;
-  if (pixelInitialized && ReactPixel) {
-    ReactPixel.pageView();
-  }
-};
+/**
+ * Track content view
+ */
+export function trackViewContent(contentName: string): void {
+  if (!isFbqAvailable()) return;
+  window.fbq('track', 'ViewContent', {
+    content_name: contentName,
+  });
+}
 
-export const trackViewContent = async (contentName: string) => {
-  if (typeof window === 'undefined') return;
-  if (pixelInitialized && ReactPixel) {
-    ReactPixel.track('ViewContent', {
-      content_name: contentName,
-    });
-  }
-};
+/**
+ * Track video play
+ */
+export function trackVideoPlay(videoName: string): void {
+  if (!isFbqAvailable()) return;
+  window.fbq('trackCustom', 'VideoPlay', {
+    video_name: videoName,
+  });
+}
 
-export const trackVideoPlay = async (videoName: string) => {
-  if (typeof window === 'undefined') return;
-  if (pixelInitialized && ReactPixel) {
-    ReactPixel.trackCustom('VideoPlay', {
-      video_name: videoName,
-    });
-  }
-};
+/**
+ * Track schedule click (Calendly)
+ */
+export function trackScheduleClick(): void {
+  if (!isFbqAvailable()) return;
+  window.fbq('track', 'Schedule', {
+    content_name: 'Calendly Booking',
+  });
+}
 
-export const trackScheduleClick = async () => {
-  if (typeof window === 'undefined') return;
-  if (pixelInitialized && ReactPixel) {
-    ReactPixel.track('Schedule', {
-      content_name: 'Calendly Booking',
-    });
-  }
-};
+/**
+ * Track custom event
+ */
+export function trackCustomEvent(
+  eventName: string,
+  data?: Record<string, unknown>
+): void {
+  if (!isFbqAvailable()) return;
+  window.fbq('trackCustom', eventName, data);
+}
 
-export const trackCustomEvent = async (eventName: string, data?: Record<string, any>) => {
-  if (typeof window === 'undefined') return;
-  if (pixelInitialized && ReactPixel) {
-    ReactPixel.trackCustom(eventName, data);
-  }
-};
-
-// Standard Lead event - use this for form submissions
-// This is a standard Facebook conversion event that can be optimized for in ads
-export const trackLead = async (data?: {
+/**
+ * Standard Lead event - use this for form submissions
+ * This is a standard Facebook conversion event that can be optimized for in ads
+ */
+export function trackLead(data?: {
   content_name?: string;
   content_category?: string;
   value?: number;
   currency?: string;
-}) => {
-  if (typeof window === 'undefined') return;
-  if (pixelInitialized && ReactPixel) {
-    ReactPixel.track('Lead', data);
-  }
-};
+}): void {
+  if (!isFbqAvailable()) return;
+  window.fbq('track', 'Lead', data);
+}
 
-// Standard CompleteRegistration event - alternative for form completions
-export const trackCompleteRegistration = async (data?: {
+/**
+ * Standard CompleteRegistration event - alternative for form completions
+ */
+export function trackCompleteRegistration(data?: {
   content_name?: string;
   value?: number;
   currency?: string;
-}) => {
-  if (typeof window === 'undefined') return;
-  if (pixelInitialized && ReactPixel) {
-    ReactPixel.track('CompleteRegistration', data);
-  }
-};
+}): void {
+  if (!isFbqAvailable()) return;
+  window.fbq('track', 'CompleteRegistration', data);
+}
 
+/**
+ * Track InitiateCheckout event
+ */
+export function trackInitiateCheckout(data?: {
+  content_name?: string;
+  value?: number;
+  currency?: string;
+}): void {
+  if (!isFbqAvailable()) return;
+  window.fbq('track', 'InitiateCheckout', data);
+}
+
+/**
+ * Track AddToCart event
+ */
+export function trackAddToCart(data?: {
+  content_name?: string;
+  value?: number;
+  currency?: string;
+}): void {
+  if (!isFbqAvailable()) return;
+  window.fbq('track', 'AddToCart', data);
+}

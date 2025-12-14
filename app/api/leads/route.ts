@@ -1,21 +1,8 @@
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 
-// Send Pushover notification
-async function sendPushoverNotification(lead: {
-  name?: string;
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  phone?: string;
-  instagram?: string;
-  socialHandle?: string;
-  revenue?: string;
-  leadType?: string;
-  leadMagnet?: string;
-  avatar?: string;
-  source?: string;
-}) {
+// Send Pushover notification - accepts the full request body
+async function sendPushoverNotification(body: Record<string, unknown>) {
   const userKey = process.env.PUSHOVER_USER_KEY;
   const appToken = process.env.PUSHOVER_APP_TOKEN;
 
@@ -24,22 +11,53 @@ async function sendPushoverNotification(lead: {
     return;
   }
 
+  // Extract fields - handle all variations from different forms
+  const {
+    name,
+    firstName,
+    lastName,
+    email,
+    phone,
+    instagram,
+    socialHandle,
+    revenue,
+    currentRevenue, // CreatorApplication uses this
+    about,
+    challenge,
+    leadType,
+    leadMagnet,
+    avatar,
+    source,
+  } = body as Record<string, string | undefined>;
+
   // Build lead name from available fields
-  const leadName = lead.name || 
-    [lead.firstName, lead.lastName].filter(Boolean).join(' ') || 
+  const leadName = name || 
+    [firstName, lastName].filter(Boolean).join(' ') || 
     'Unknown';
+
+  // Get earnings from either field
+  const earnings = revenue || currentRevenue;
+
+  // Determine lead type label
+  let typeLabel = 'Agency Application';
+  if (leadType === 'lead_magnet') {
+    typeLabel = `Lead Magnet: ${leadMagnet || 'unknown'}`;
+  } else if (leadType === 'application') {
+    typeLabel = `Application: ${avatar || 'direct'}`;
+  }
 
   // Build notification message
   const lines = [
     `👤 ${leadName}`,
-    lead.phone ? `📞 ${lead.phone}` : null,
-    lead.email ? `📧 ${lead.email}` : null,
-    lead.instagram || lead.socialHandle ? `📱 ${lead.instagram || lead.socialHandle}` : null,
-    lead.revenue ? `💰 ${lead.revenue}` : null,
+    phone ? `📞 ${phone}` : null,
+    email ? `📧 ${email}` : null,
+    instagram || socialHandle ? `📱 ${instagram || socialHandle}` : null,
+    earnings ? `💰 ${earnings}` : null,
+    about ? `📝 ${about.slice(0, 100)}${about.length > 100 ? '...' : ''}` : null,
+    challenge ? `🎯 ${challenge.slice(0, 100)}${challenge.length > 100 ? '...' : ''}` : null,
     '',
-    `Type: ${lead.leadType || 'direct'}`,
-    lead.leadMagnet ? `Lead Magnet: ${lead.leadMagnet}` : null,
-    lead.avatar ? `Avatar: ${lead.avatar}` : null,
+    typeLabel,
+    source ? `🔗 ${source}` : null,
   ].filter(Boolean).join('\n');
 
   try {
@@ -108,20 +126,7 @@ export async function POST(request: Request) {
     `;
 
     // Send instant mobile notification (don't await to avoid slowing down response)
-    sendPushoverNotification({
-      name,
-      firstName,
-      lastName,
-      email,
-      phone,
-      instagram,
-      socialHandle,
-      revenue,
-      leadType,
-      leadMagnet,
-      avatar,
-      source,
-    });
+    sendPushoverNotification(body);
 
     return NextResponse.json({ success: true }, { status: 201 });
   } catch (error) {

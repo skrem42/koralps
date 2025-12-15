@@ -37,3 +37,4 @@ export default function ProofBanner({ stats = defaultStats }: ProofBannerProps) 
   );
 }
 
+

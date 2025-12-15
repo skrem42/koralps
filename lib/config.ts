@@ -601,6 +601,7 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
     fields: [
       { type: 'firstName', label: 'First Name', placeholder: 'Jane', required: true },
       { type: 'email', label: 'Email', placeholder: 'jane@example.com', required: true },
+      { type: 'phone', label: 'Phone Number', placeholder: 'Your phone number', required: true },
       { type: 'custom', customKey: 'instagram', label: 'Your Instagram Handle', placeholder: '@yourhandle', required: true },
     ],
     submitText: 'BOOK MY FREE AUDIT →',

@@ -123,7 +123,9 @@ export async function POST(request: Request) {
       name,
       socialHandle,
       revenue,
+      currentRevenue,
       challenge,
+      about,
       avatar,
       // Common fields
       source,
@@ -142,7 +144,7 @@ export async function POST(request: Request) {
       await sql`
         INSERT INTO leads (
           first_name, last_name, name, email, phone, instagram, 
-          social_handle, revenue, challenge, lead_magnet, avatar, 
+          social_handle, revenue, challenge, about, lead_magnet, avatar, 
           source, lead_type, created_at
         )
         VALUES (
@@ -153,8 +155,9 @@ export async function POST(request: Request) {
           ${phone || null}, 
           ${instagram || null},
           ${socialHandle || null},
-          ${revenue || null},
+          ${revenue || currentRevenue || null},
           ${challenge || null},
+          ${about || null},
           ${leadMagnet || null}, 
           ${avatar || null},
           ${source || null}, 

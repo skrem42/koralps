@@ -17,6 +17,7 @@ export async function GET() {
         social_handle VARCHAR(255),
         revenue VARCHAR(50),
         challenge TEXT,
+        about TEXT,
         lead_magnet VARCHAR(255),
         avatar VARCHAR(255),
         source TEXT,
@@ -33,6 +34,7 @@ export async function GET() {
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS social_handle VARCHAR(255)`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS revenue VARCHAR(50)`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS challenge TEXT`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS about TEXT`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS avatar VARCHAR(255)`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS lead_type VARCHAR(50)`;
 

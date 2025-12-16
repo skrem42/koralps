@@ -18,7 +18,7 @@ export default function Home() {
       <AgencyNavbar />
       
       <AgencyHero
-        headline="The Agency Behind SA's Top Creators"
+        headline="The Agency Behind SA biggest creator"
         subheadline="We don't just manage accounts. We build influencers. In-person content direction, brilliant strategy, and the fastest deployment in the game."
         caseStudyResult="$1K → $500K/month"
         caseStudyName="Lauren"
@@ -35,11 +35,11 @@ export default function Home() {
       
       <CaseStudyFeature
         name="Lauren"
-        beforeRevenue="Under $1K/month"
+        beforeRevenue="$1K/month"
         afterRevenue="$500K/month"
         timeframe="2025"
         story={[
-          "Lauren came to us as a SA creator stuck under $1K/month. She had potential, but no system. No direction. No strategy.",
+          "Lauren came to us as a SA creator stuck just over $1K/month. She had potential, but no system. No direction. No strategy.",
           "We didn't just manage her account—we transformed her entire approach. In-person shoots. Direct content direction. Brilliant positioning that resonated with US audiences.",
           "Within months, Lauren became one of the highest-earning creators in the industry. Not by accident. By design.",
         ]}

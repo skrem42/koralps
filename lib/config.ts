@@ -449,7 +449,7 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
     ],
     submitText: 'SEND ME THE PLAYBOOK + DATABASE',
     webhookUrl: undefined,
-    successRedirect: '/4',
+    successRedirect: '/thank-you',
     successMessage: 'Check your email! The playbook and database are on their way.',
   },
   
@@ -606,7 +606,7 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
     ],
     submitText: 'BOOK MY FREE AUDIT →',
     webhookUrl: undefined,
-    successRedirect: '',
+    successRedirect: '/thank-you',
     successMessage: 'You\'re in. Check your email — we\'ll send you a link to schedule your call.',
   },
   
@@ -675,7 +675,7 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
     trustBadge: 'USED TO BUILD 8-FIGURE CREATOR BRANDS',
     headline: 'The 4-Step Branding Framework We Use to Scale Creators to $500K/pm+',
     subheadline: 'The exact positioning system that transformed faceless creators into industry icons.',
-    resourceImage: undefined, // Add your PDF mockup image path here
+    resourceImage: '/earnings.png',
   },
   
   form: {
@@ -687,7 +687,7 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
     ],
     submitText: 'SEND ME THE FRAMEWORK',
     webhookUrl: undefined,
-    successRedirect: '/8', // Redirect to positioning avatar
+    successRedirect: '/thank-you-branding', // Redirect to thank you page with calendar
     successMessage: 'Check your email! The 4-Step Branding Framework is on its way.',
   },
   

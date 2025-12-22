@@ -645,6 +645,95 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
     },
   },
 },
+'branding': {
+  slug: 'branding',
+  name: 'The 4-Step Branding Framework',
+  colorScheme: 'blue',
+  
+  headlineVariants: {
+    a: {
+      headline: 'The 4-Step Branding Framework We Use to Scale Creators to $500K/pm+',
+      subheadline: 'The exact positioning system that transformed faceless creators into industry icons.',
+    },
+    b: {
+      headline: 'How We Build $500K/pm+ Brands (In 4 Steps)',
+      subheadline: 'The branding framework behind the highest-earning creators you\'ve never heard of.',
+    },
+    c: {
+      headline: 'From Generic to Iconic: The 4-Step Framework',
+      subheadline: 'How we scale creators to $500K/month by getting branding right from day one.',
+    },
+  },
+  
+  meta: {
+    title: 'Free: The 4-Step Branding Framework for $500K/pm+ Creators | Kora',
+    description: 'The exact positioning & branding system we use to scale creators to $500K/month+. Download the framework used by top 0.01% earners.',
+    keywords: 'creator branding, onlyfans positioning, creator brand, personal brand creator',
+  },
+  
+  hero: {
+    trustBadge: 'USED TO BUILD 8-FIGURE CREATOR BRANDS',
+    headline: 'The 4-Step Branding Framework We Use to Scale Creators to $500K/pm+',
+    subheadline: 'The exact positioning system that transformed faceless creators into industry icons.',
+    resourceImage: undefined, // Add your PDF mockup image path here
+  },
+  
+  form: {
+    headline: 'Download the Framework (Free)',
+    fields: [
+      { type: 'firstName', label: 'First Name', placeholder: 'Jane', required: true },
+      { type: 'email', label: 'Email', placeholder: 'jane@example.com', required: true },
+      { type: 'phone', label: 'Phone Number (Optional)', placeholder: 'Your phone', required: false },
+    ],
+    submitText: 'SEND ME THE FRAMEWORK',
+    webhookUrl: undefined,
+    successRedirect: '/8', // Redirect to positioning avatar
+    successMessage: 'Check your email! The 4-Step Branding Framework is on its way.',
+  },
+  
+  whatYouGet: {
+    headline: 'What\'s Inside the Framework',
+    intro: 'The exact 4-step system we use to position creators for maximum earnings:',
+    items: [
+      {
+        title: 'Step 1: Core Identity Mapping',
+        description: 'How to identify your natural positioning — not what you should be, but what you already are (and how to leverage it for 6-7 figures).',
+      },
+      {
+        title: 'Step 2: The Differentiation Matrix',
+        description: 'The strategic tool we use to position you in a way that eliminates competition. You\'re not "better" — you\'re different. Here\'s how.',
+      },
+      {
+        title: 'Step 3: Brand Architecture Blueprint',
+        description: 'Visual identity, messaging framework, content pillars, and platform strategy — all aligned to ONE clear brand position.',
+      },
+      {
+        title: 'Step 4: The Scale Protocol',
+        description: 'How to scale a brand from $10K/month to $500K+ without diluting it. Most creators lose their edge when they scale. This prevents that.',
+      },
+      {
+        title: 'Bonus: The $0 → $450K Case Study',
+        description: 'Full breakdown of how we positioned one creator from complete unknown to $450K/month in 4 months using this exact framework.',
+      },
+      {
+        title: 'Bonus: Brand Audit Checklist',
+        description: '23-point checklist to diagnose what\'s broken in your current positioning (and what to fix first).',
+      },
+    ],
+  },
+  
+  footer: {
+    brandName: 'Kora',
+    disclaimer: 'This website is NOT endorsed by any platform. Results vary based on execution and individual circumstances.',
+  },
+  
+  tracking: {
+    customParams: {
+      lead_magnet: 'branding_framework',
+      avatar_target: '8',
+    },
+  },
+},
 };
 
 // Default config - used as base for all avatars

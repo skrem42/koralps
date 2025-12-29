@@ -264,6 +264,9 @@ export interface LeadMagnetConfig {
     disclaimer: string;
   };
   
+  // Download/Resource URL (for email automation)
+  downloadUrl?: string;  // URL to PDF, Google Doc, or other resource
+  
   // Tracking
   tracking?: {
     facebookPixelId?: string;
@@ -653,6 +656,9 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
   slug: 'branding',
   name: 'The 4-Step Branding Framework',
   colorScheme: 'blue',
+  
+  // Google Doc URL for email delivery
+  downloadUrl: 'https://docs.google.com/document/d/1JEmhEgAare-asHI_WzOMKxu5RJ8ZU20U12AL3UDwtO0/edit?tab=t.0#heading=h.cktqdnbwfxr1',
   
   headlineVariants: {
     a: {

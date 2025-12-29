@@ -142,6 +142,21 @@ export default function LeadMagnetPage({ config }: LeadMagnetPageProps) {
         }),
       });
 
+      // Subscribe to Mailchimp
+      await fetch('/api/mailchimp/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          instagram: formData.instagram,
+          phone: formData.phone,
+          leadMagnet: config.slug,
+          tags: [config.slug, 'lead-magnet'],
+        }),
+      });
+
       // Also send to webhook if configured
       if (form.webhookUrl) {
         await fetch(form.webhookUrl, {

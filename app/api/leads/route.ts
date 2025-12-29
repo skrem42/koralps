@@ -139,41 +139,45 @@ export async function POST(request: Request) {
     // #endregion
     await sendPushoverNotification(body);
 
-    // Then save to database
-    try {
-      await sql`
-        INSERT INTO leads (
-          first_name, last_name, name, email, phone, instagram, 
-          social_handle, revenue, challenge, about, lead_magnet, avatar, 
-          source, lead_type, created_at
-        )
-        VALUES (
-          ${firstName || null}, 
-          ${lastName || null}, 
-          ${name || null},
-          ${email}, 
-          ${phone || null}, 
-          ${instagram || null},
-          ${socialHandle || null},
-          ${revenue || currentRevenue || null},
-          ${challenge || null},
-          ${about || null},
-          ${leadMagnet || null}, 
-          ${avatar || null},
-          ${source || null}, 
-          ${leadType || null},
-          NOW()
-        )
-      `;
-      // #region agent log
-      await fetch(DEBUG_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:POST',message:'DB insert succeeded',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D'})}).catch(()=>{});
-      // #endregion
-    } catch (dbError) {
-      // Log DB error but don't fail the request - notification already sent
-      // #region agent log
-      fetch(DEBUG_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:POST',message:'DB insert failed (notification already sent)',data:{error:String(dbError)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D'})}).catch(()=>{});
-      // #endregion
-      console.error('Failed to save lead to DB:', dbError);
+    // Then save to database (only if database is configured)
+    if (process.env.POSTGRES_URL) {
+      try {
+        await sql`
+          INSERT INTO leads (
+            first_name, last_name, name, email, phone, instagram, 
+            social_handle, revenue, challenge, about, lead_magnet, avatar, 
+            source, lead_type, created_at
+          )
+          VALUES (
+            ${firstName || null}, 
+            ${lastName || null}, 
+            ${name || null},
+            ${email}, 
+            ${phone || null}, 
+            ${instagram || null},
+            ${socialHandle || null},
+            ${revenue || currentRevenue || null},
+            ${challenge || null},
+            ${about || null},
+            ${leadMagnet || null}, 
+            ${avatar || null},
+            ${source || null}, 
+            ${leadType || null},
+            NOW()
+          )
+        `;
+        // #region agent log
+        await fetch(DEBUG_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:POST',message:'DB insert succeeded',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D'})}).catch(()=>{});
+        // #endregion
+      } catch (dbError) {
+        // Log DB error but don't fail the request - notification already sent
+        // #region agent log
+        fetch(DEBUG_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:POST',message:'DB insert failed (notification already sent)',data:{error:String(dbError)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D'})}).catch(()=>{});
+        // #endregion
+        console.error('Failed to save lead to DB:', dbError);
+      }
+    } else {
+      console.log('Database not configured - skipping DB insert (notification sent successfully)');
     }
 
     return NextResponse.json({ success: true }, { status: 201 });

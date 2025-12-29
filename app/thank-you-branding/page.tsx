@@ -11,11 +11,11 @@ export default function ThankYouBrandingPage() {
   return (
     <ThankYouPage
       headline="Your Playbook Is On Its Way. But First..."
-      subheadline="We guarantee you'll add $10K/month to your creator income — or we'll keep working with you for free until you do."
+      subheadline="You'll leave your call with a crystal-clear roadmap to scale"
       guarantee={{
         amount: "$10K/month",
         timeframe: "90 days",
-        description: "Book a call below to see if you qualify."
+        description: "Book a call below. We guarantee it's the best positioning & strategy session you've ever had."
       }}
       calendlyUrl="https://calendly.com/calum-koracreative/30-minute-call-with-kora-team"
       testimonials={[
@@ -54,4 +54,5 @@ export default function ThankYouBrandingPage() {
     />
   );
 }
+
 

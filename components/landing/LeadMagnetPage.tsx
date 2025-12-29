@@ -113,6 +113,10 @@ export default function LeadMagnetPage({ config }: LeadMagnetPageProps) {
     if (field.type === 'custom' && field.customKey) {
       return field.customKey;
     }
+    // Map field types to database column names
+    if (field.type === 'firstName') return 'firstName';
+    if (field.type === 'lastName') return 'lastName';
+    if (field.type === 'instagram') return 'instagram';
     return field.type;
   };
 
@@ -297,7 +301,7 @@ export default function LeadMagnetPage({ config }: LeadMagnetPageProps) {
                           value={formData[fieldKey] || ''}
                           onChange={(e) => handleFieldChange(fieldKey, e.target.value)}
                           className={`w-full px-4 py-3 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none ${scheme.inputFocus} transition-colors`}
-                          placeholder={field.placeholder || ''}
+                          placeholder={field.placeholder || (field.type === 'instagram' ? '@yourhandle' : '')}
                         />
                       )}
                     </div>

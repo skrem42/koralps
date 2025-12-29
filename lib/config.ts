@@ -197,7 +197,7 @@ export interface AvatarConfig {
 // ============================================
 // Lead magnets are simpler opt-in pages for free resources (guides, playbooks, etc.)
 
-export type LeadMagnetFieldType = 'firstName' | 'lastName' | 'email' | 'phone' | 'company' | 'custom';
+export type LeadMagnetFieldType = 'firstName' | 'lastName' | 'email' | 'phone' | 'instagram' | 'company' | 'custom';
 
 export interface LeadMagnetField {
   type: LeadMagnetFieldType;
@@ -286,17 +286,18 @@ export const defaultLeadMagnetConfig: LeadMagnetConfig = {
     headline: 'Free Download: The Creator Growth Playbook',
     subheadline: 'The proven strategies that help creators scale to $10K+ months.',
   },
-  form: {
-    headline: 'Enter Your Info Below To Access',
-    fields: [
-      { type: 'firstName', label: 'First Name', required: true },
-      { type: 'lastName', label: 'Last Name', required: true },
-      { type: 'email', label: 'Email', required: true },
-      { type: 'phone', label: 'Phone Number', required: false },
-    ],
-    submitText: 'ACCESS THE PLAYBOOK',
-    successMessage: 'Check your email for instant access!',
-  },
+    form: {
+      headline: 'Enter Your Info Below To Access',
+      fields: [
+        { type: 'firstName', label: 'First Name', required: true },
+        { type: 'lastName', label: 'Last Name', required: true },
+        { type: 'email', label: 'Email', required: true },
+        { type: 'phone', label: 'Phone Number', required: false },
+        { type: 'instagram', label: 'Instagram Handle', placeholder: '@yourhandle', required: false },
+      ],
+      submitText: 'ACCESS THE PLAYBOOK',
+      successMessage: 'Check your email for instant access!',
+    },
   whatYouGet: {
     headline: 'Here\'s What You\'ll Get Access To',
     intro: 'When you download the free playbook, you\'ll unlock proven strategies that help creators scale.',
@@ -360,6 +361,7 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
         { type: 'lastName', label: 'Last Name', required: true },
         { type: 'email', label: 'Email', required: true },
         { type: 'phone', label: 'Phone Number', required: false },
+        { type: 'instagram', label: 'Instagram Handle', placeholder: '@yourhandle', required: false },
       ],
       submitText: 'ACCESS THE PLAYBOOK',
       webhookUrl: undefined, // Add your webhook URL here
@@ -445,6 +447,7 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
     fields: [
       { type: 'firstName', label: 'First Name', placeholder: 'Jane', required: true },
       { type: 'email', label: 'Email', placeholder: 'jane@example.com', required: true },
+      { type: 'instagram', label: 'Instagram Handle', placeholder: '@yourhandle', required: false },
       { type: 'custom', customKey: 'current_revenue', label: 'Current Monthly Revenue', placeholder: 'Select...', required: false },
     ],
     submitText: 'SEND ME THE PLAYBOOK + DATABASE',
@@ -540,6 +543,7 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
         { type: 'lastName', label: 'Last Name', required: true },
         { type: 'email', label: 'Email', required: true },
         { type: 'phone', label: 'Phone Number', required: false },
+        { type: 'instagram', label: 'Instagram Handle', placeholder: '@yourhandle', required: false },
       ],
       submitText: 'ACCESS THE PLAYBOOK',
       successMessage: 'Check your email for instant access!',
@@ -602,7 +606,7 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
       { type: 'firstName', label: 'First Name', placeholder: 'Jane', required: true },
       { type: 'email', label: 'Email', placeholder: 'jane@example.com', required: true },
       { type: 'phone', label: 'Phone Number', placeholder: 'Your phone number', required: true },
-      { type: 'custom', customKey: 'instagram', label: 'Your Instagram Handle', placeholder: '@yourhandle', required: true },
+      { type: 'instagram', label: 'Your Instagram Handle', placeholder: '@yourhandle', required: true },
     ],
     submitText: 'BOOK MY FREE AUDIT →',
     webhookUrl: undefined,
@@ -684,6 +688,7 @@ export const leadMagnets: Record<string, Partial<LeadMagnetConfig>> = {
       { type: 'firstName', label: 'First Name', placeholder: 'Jane', required: true },
       { type: 'email', label: 'Email', placeholder: 'jane@example.com', required: true },
       { type: 'phone', label: 'Phone Number (Optional)', placeholder: 'Your phone', required: false },
+      { type: 'instagram', label: 'Instagram Handle', placeholder: '@yourhandle', required: false },
     ],
     submitText: 'SEND ME THE FRAMEWORK',
     webhookUrl: undefined,

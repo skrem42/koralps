@@ -237,7 +237,7 @@ export async function trackCustomEventCAPI(
 // Declare fbq on window for TypeScript
 declare global {
   interface Window {
-    fbq: (action: string, event: string, data?: Record<string, unknown>) => void;
+    fbq: (...args: unknown[]) => void;
   }
 }
 

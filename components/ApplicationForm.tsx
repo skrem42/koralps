@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { trackLead } from '@/lib/analytics';
+import { trackCompleteRegistrationCAPI } from '@/lib/analytics-capi';
 import { AvatarConfig } from '@/lib/config';
 
 interface ApplicationFormProps {
@@ -25,10 +25,20 @@ export default function ApplicationForm({ config }: ApplicationFormProps) {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Fire the standard Facebook Lead event for conversion tracking
-    trackLead({
-      content_name: 'Application Form',
-      content_category: 'Lead Generation',
+    // Track with Facebook Pixel + CAPI (dual tracking with automatic deduplication)
+    const [firstName, ...lastNameParts] = formData.name.split(' ');
+    const lastName = lastNameParts.join(' ');
+    
+    trackCompleteRegistrationCAPI({
+      email: formData.email,
+      firstName: firstName,
+      lastName: lastName || undefined,
+      phone: formData.phone,
+    }, {
+      contentName: config.name || 'Application Form',
+      contentCategory: 'Application',
+      value: 30000, // $50K/mo creator × 50% × 12 months × 10% conversion = $30K/lead
+      currency: 'USD',
     });
 
     try {

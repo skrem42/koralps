@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button, Input, Textarea } from '@heroui/react';
 import PhoneInput from '@/components/ui/PhoneInput';
+import { trackCompleteRegistrationCAPI } from '@/lib/analytics-capi';
 
 interface CreatorApplicationProps {
   headline?: string;
@@ -31,6 +32,19 @@ export default function CreatorApplication({
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Track with Facebook Pixel + CAPI (dual tracking with automatic deduplication)
+    trackCompleteRegistrationCAPI({
+      email: formData.email,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      phone: formData.phone,
+    }, {
+      contentName: 'Creator Application',
+      contentCategory: 'Application',
+      value: 30000, // $50K/mo creator × 50% × 12 months × 10% conversion = $30K/lead
+      currency: 'USD',
+    });
+
     try {
       // Submit to API route
       const response = await fetch('/api/leads', {
@@ -40,6 +54,7 @@ export default function CreatorApplication({
           ...formData,
           source: 'agency-website',
           page: '/apply',
+          leadType: 'application',
           timestamp: new Date().toISOString(),
         }),
       });

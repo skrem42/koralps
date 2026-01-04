@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { trackLead } from '@/lib/analytics';
+import { trackLeadCAPI } from '@/lib/analytics-capi';
 import { LeadMagnetConfig } from '@/lib/config';
 import PhoneInput from '@/components/ui/PhoneInput';
 
@@ -124,9 +125,16 @@ export default function LeadMagnetPage({ config }: LeadMagnetPageProps) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    trackLead({
-      content_name: config.name,
-      content_category: 'Lead Magnet',
+    // Track with both Pixel (browser) and CAPI (server) with automatic deduplication
+    // This sends the event to both Facebook Pixel AND Conversions API
+    trackLeadCAPI({
+      email: formData.email,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      phone: formData.phone,
+    }, {
+      contentName: config.name,
+      contentCategory: 'Lead Magnet',
     });
 
     try {

@@ -215,3 +215,5 @@ Your application forms now have **full CAPI tracking**!
 
 Test it out and you should see both Pixel and CAPI events in Events Manager. 🚀
 
+
+
